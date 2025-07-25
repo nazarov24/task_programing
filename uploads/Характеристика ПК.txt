@@ -1,0 +1,7 @@
+CPU: AMD RYZEN 5 7600X
+GPU: NVIDIA RTX 4070
+RAM: CRUCIAL 32GB @ 4800Mhz
+MON: MSI G274QPF
+Mouse: Lenovo Legion M200 RGB
+Keybo: Redragon Aditya K513
+Mic: HyperX QuadCast S

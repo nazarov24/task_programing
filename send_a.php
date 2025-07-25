@@ -1,35 +1,59 @@
 <?php
-$name_f = $_POST['name_file'];
-$file = $_POST['save_file'];
-$date = $_POST['date_file'];
-$comment = $_POST['comment'];
-$uid = $_POST['uid'];
-$status = 3;
-// $today = date("d.m.y");
-$file2 = 0;
-
-function back(){
-	echo "<br>"."<br>";
-	echo "<form action=admin.php>";
-	echo "<input type=submit value=Назад>";
-	echo "</form>";
-}
+// Подключение к БД
 $conn = new mysqli('localhost', 'root', '', 'zadachnik');
+if ($conn->connect_error) {
+    die("Ошибка подключения: " . $conn->connect_error);
+}
 
-$user = $conn->query("SELECT `id` FROM `users` WHERE `username` = '$uid'");
-$user1 = $user->fetch_assoc();
-print_r($user1);
-if(!empty($user1)){
-	echo "Ин супориш аллакай супорида шудааст!";
-	back();
-	exit();
+// Проверяем, существует ли таблица files, если нет — создаем
+$checkTable = $conn->query("SHOW TABLES LIKE 'files'");
+if ($checkTable->num_rows == 0) {
+    $createTableSql = "
+    CREATE TABLE files (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        source VARCHAR(255) NOT NULL,
+        comment TEXT,
+        user_id INT(11) NOT NULL,
+        upload_date DATE DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+    if (!$conn->query($createTableSql)) {
+        die("Ошибка при создании таблицы: " . $conn->error);
+    }
 }
-else{
-	echo "Маълумоти шумо бо муваффақият сабт карда шуд";
-	back();
+
+$name = $_POST['name_file'] ?? '';
+$uid = (int)($_POST['uid'] ?? 0);
+$date = $_POST['date_file'] ?? date('Y-m-d');
+$comment = $_POST['comment'] ?? '';
+
+if (isset($_FILES['save_file']) && $_FILES['save_file']['error'] === UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['save_file']['tmp_name'];
+    $fileName = basename($_FILES['save_file']['name']);
+    $uploadDir = 'uploads/';
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+    $destPath = $uploadDir . $fileName;
+
+    if (move_uploaded_file($fileTmpPath, $destPath)) {
+        $stmt = $conn->prepare("INSERT INTO files (name, source, comment, user_id, upload_date) VALUES (?, ?, ?, ?, ?)");
+        // Типы: s-string, i-integer; всего 5 параметров — строка из 5 символов!
+        $stmt->bind_param("sssis", $name, $destPath, $comment, $uid, $date);
+
+        if ($stmt->execute()) {
+            echo "Маълумоти шумо бо муваффақият сабт карда шуд<br>";
+        } else {
+            echo "Хатоги ҳангоми сабт: " . $stmt->error . "<br>";
+        }
+        $stmt->close();
+    } else {
+        echo "Хатогӣ: Файл бор карда нашуд<br>";
+    }
+} else {
+    echo "Файл интихоб нашуд ё хатогӣ буд<br>";
 }
-$conn->query("INSERT INTO `tasks` (`name`,`source`,`source_2`,`user_id`,`date`,`status`,`comment`)
-VALUES ('$name_f','$file','$file2','$uid','$date','$status','$comment')");
 
 $conn->close();
 ?>
