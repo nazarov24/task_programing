@@ -1,0 +1,196 @@
+/* --- Базовые стили --- */
+body {
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Основной контейнер - центрируем и ограничиваем ширину */
+.container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+/* Хедер */
+header.d-flex {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+header.d-flex a.fs-4 {
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+/* Поисковое поле */
+.search-container {
+  max-width: 320px;
+  margin: 20px auto 40px;
+  width: 100%;
+}
+
+.search-container input.form-control {
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1.5px solid #ced4da;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.search-container input.form-control::placeholder {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.search-container input.form-control:focus {
+  border-color: #0073b1;
+  box-shadow: 0 0 8px rgba(0, 115, 177, 0.3);
+}
+
+/* Таблица */
+table#myTable {
+  background-color: #fff;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+table#myTable thead th {
+  background-color: #0073b1;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 20px;
+  border: none;
+  text-align: center;
+  user-select: none;
+}
+
+table#myTable tbody td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+table#myTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table#myTable tbody tr:hover {
+  background-color: #f1f3f5;
+  transition: background-color 0.3s ease;
+}
+
+/* Кнопки в таблице */
+table#myTable a.btn {
+  font-size: 0.9rem;
+  padding: 7px 16px;
+  min-width: 90px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table#myTable a.btn-primary {
+  background-color: #0073b1;
+  color: #fff;
+}
+
+table#myTable a.btn-primary:hover {
+  background-color: #005f91;
+  color: #fff;
+}
+
+table#myTable a.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+table#myTable a.btn-success:hover {
+  background-color: #218838;
+  color: #fff;
+}
+
+/* Футер */
+footer.bg-dark {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 12px 0;
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer .container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+footer a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #ccc;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+  }
+  table#myTable thead {
+    display: none;
+  }
+  table#myTable tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  table#myTable tbody td {
+    display: block;
+    text-align: left;
+    padding: 10px;
+    border-bottom: none;
+  }
+  table#myTable tbody td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  table#myTable a.btn {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

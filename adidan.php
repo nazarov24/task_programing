@@ -33,17 +33,48 @@ $result = $stmt->get_result();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Руйхати супоришхо</title>
-  <link rel="stylesheet" href="/css/style_1.css" />
+  <title>Рӯйхати супоришҳо</title>
   <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+    footer {
+      background-color: #212529;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<h1 class="texts">Руйхати супоришхо</h1>
-<div class="container">
+
+<header class="bg-light border-bottom mb-4">
+  <div class="container py-3">
+    <h2 class="text-center">Suporish</h2>
+  </div>
+</header>
+
+<main class="container">
+  <h1 class="mb-4">Рӯйхати супоришҳо</h1>
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered">
-        <thead>
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
           <tr>
             <th scope="col">№</th>
             <th scope="col">Супоришҳо</th>
@@ -54,15 +85,14 @@ $result = $stmt->get_result();
         </thead>
         <tbody>
           <?php
-          if ($result && $result->num_rows > 0) { 
+          if ($result && $result->num_rows > 0) {
               $k = 0;
-              while($row = $result->fetch_assoc()) { 
+              while($row = $result->fetch_assoc()) {
                   $k++;
                   $name = htmlspecialchars($row["name"] ?? "-");
                   $date = htmlspecialchars($row["upload_date"] ?? "-");
                   $statusRaw = $row["status"] ?? "Нопурра";
 
-                  // Если статус числовой, преобразуем его в текст
                   switch (strval($statusRaw)) {
                       case "1": $statusText = "Қабул шуд"; break;
                       case "0": $statusText = "Қабул нашуд"; break;
@@ -78,22 +108,20 @@ $result = $stmt->get_result();
                   echo "</tr>";
               }
           } else {
-              echo "<tr><td colspan='5'>Барои ин корбар супориш нест.</td></tr>";
+              echo "<tr><td colspan='5' class='text-center'>Барои ин корбар супориш нест.</td></tr>";
           }
           ?>
         </tbody>
       </table>
     </div>
   </div>
-</div>
+</main>
 
-<footer class="bg-dark text-center text-white view mt-5">
-  <div class="container p-4">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022: <a class="text-white" href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a>
-    </div>
+<footer>
+  <div class="container">
+    © 2022: <a href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a>
   </div>
-</footer> 
+</footer>
 
 </body>
 </html>

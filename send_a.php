@@ -39,20 +39,21 @@ if (isset($_FILES['save_file']) && $_FILES['save_file']['error'] === UPLOAD_ERR_
 
     if (move_uploaded_file($fileTmpPath, $destPath)) {
         $stmt = $conn->prepare("INSERT INTO files (name, source, comment, user_id, upload_date) VALUES (?, ?, ?, ?, ?)");
-        // Типы: s-string, i-integer; всего 5 параметров — строка из 5 символов!
         $stmt->bind_param("sssis", $name, $destPath, $comment, $uid, $date);
 
         if ($stmt->execute()) {
-            echo "Маълумоти шумо бо муваффақият сабт карда шуд<br>";
+            // ✅ Успешно – редирект на admin.php
+            header("Location: admin.php?success=1");
+            exit();
         } else {
-            echo "Хатоги ҳангоми сабт: " . $stmt->error . "<br>";
+            echo "Ошибка при сохранении: " . $stmt->error;
         }
         $stmt->close();
     } else {
-        echo "Хатогӣ: Файл бор карда нашуд<br>";
+        echo "Ошибка: файл не загружен";
     }
 } else {
-    echo "Файл интихоб нашуд ё хатогӣ буд<br>";
+    echo "Файл не выбран или произошла ошибка";
 }
 
 $conn->close();

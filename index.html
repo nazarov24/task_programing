@@ -1,93 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tg">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Асосӣ</title>
-  <link rel="stylesheet" href="/css/style_1.css" />
   <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+  <style>
+    /* Фон для приветственного блока */
+    .hero {
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    footer {
+      background-color: #212529;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Suporish</span>
-      </a>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Асоси</a></li>
-        <li class="nav-item"><a href="contact.html" class="nav-link">Алоқа</a></li>
-      </ul>
-    </header>
-  </div>
+  <!-- Навигация -->
+  <header class="container d-flex flex-wrap justify-content-between align-items-center py-3 mb-0 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <span class="fs-4 fw-bold">Suporish</span>
+    </a>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Асосӣ</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Алоқа</a></li>
+    </ul>
+  </header>
 
-  <!--center-->
-  <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">Хуш омадед</h1>
-      <p class="lead text-muted">
-        Шумо дар инчо метавонед маълумотхои нав, ва кухнаро бинед, ва аз тарафи устод, ё рохбар вазифахо гирифта сабт карда ва корхои шумо дуруст аст ё не фахмед барои ин шумо бояд аз кайд гузаред
-      </p>
-      <p>
-        <a href="reg.html" class="btn btn-primary my-2">БАКАЙДГИРӢ</a>
-        <a href="login.html" class="btn btn-secondary my-2">ДОХИЛШАВӢ</a>
-      </p>
+  <!-- Блок приветствия -->
+  <section class="hero">
+    <h1>Хуш омадед</h1>
+    <p>
+      Шумо дар инҷо метавонед маълумотҳои нав ва кӯҳнаро бинед, аз тарафи устод ё роҳбар вазифаҳо гиред, сабт кунед ва фаҳмед, ки кори шумо дуруст аст ё не. Барои ин шумо бояд аз қайд гузаред.
+    </p>
+    <div>
+      <a href="reg.html" class="btn btn-light btn-lg mx-2 fw-bold">БАКАЙДГИРӢ</a>
+      <a href="login.html" class="btn btn-outline-light btn-lg mx-2">ДОХИЛШАВӢ</a>
     </div>
-  </div>
+  </section>
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 bloc">
-    <div class="col">
-      <div class="card shadow-sm">
-        <img
-          src="images/img.jpg"
-          class="card-img-top img-fluid"
-          alt="Муҳокимаи супоришҳо"
-          style="height: 200px; object-fit: cover;"
-        />
-        <div class="card-body">
-          <p class="card-text">Муҳокимаи супоришҳо</p>
+  <!-- Карточки -->
+  <div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+      <div class="col">
+        <div class="card shadow-sm h-100 text-center">
+          <img src="images/img.jpg" class="card-img-top" alt="Муҳокимаи супоришҳо">
+          <div class="card-body">
+            <p class="card-text fw-semibold">Муҳокимаи супоришҳо</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col">
-      <div class="card shadow-sm">
-        <img
-          src="images/imgg.jpg"
-          class="card-img-top img-fluid"
-          alt="Дар вақтҳои муайян"
-          style="height: 200px; object-fit: cover;"
-        />
-        <div class="card-body">
-          <p class="card-text">Дар вақтҳои муайян</p>
+      <div class="col">
+        <div class="card shadow-sm h-100 text-center">
+          <img src="images/imgg.jpg" class="card-img-top" alt="Дар вақтҳои муайян">
+          <div class="card-body">
+            <p class="card-text fw-semibold">Дар вақтҳои муайян</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col">
-      <div class="card shadow-sm">
-        <img
-          src="images/imggg.jpg"
-          class="card-img-top img-fluid"
-          alt="Супоришҳои шавқовар"
-          style="height: 200px; object-fit: cover;"
-        />
-        <div class="card-body">
-          <p class="card-text">Супоришҳои шавқовар</p>
+      <div class="col">
+        <div class="card shadow-sm h-100 text-center">
+          <img src="images/imggg.jpg" class="card-img-top" alt="Супоришҳои шавқовар">
+          <div class="card-body">
+            <p class="card-text fw-semibold">Супоришҳои шавқовар</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-center text-white view mt-5">
-    <div class="container p-4">
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022:
-        <a class="text-white" href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a>
-      </div>
+  <!-- Футер -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2022: <a href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a></p>
     </div>
   </footer>
+
+  <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

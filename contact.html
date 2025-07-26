@@ -1,15 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Алоқа</title>
-    <link rel="stylesheet" href="/css/style_1.css">
-    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Алоқа</title>
+  <link rel="stylesheet" href="/css/style_1.css" />
+  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container-main {
+      flex: 1 0 auto;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    header.d-flex {
+      justify-content: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    /* Горизонтальные карточки */
+    .card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      height: 160px; /* фиксированная высота карточки */
+    }
+
+    .card-img-top {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .card-body {
+      flex: 1;
+    }
+
+    .card-text {
+      font-size: 1.2rem;
+      margin: 0;
+      text-align: left;
+      color: #212529;
+      font-weight: 500;
+    }
+
+    /* Сетка карточек */
+    .row.bloc > .col-12 {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Контроль колонок: 2 на md+ и 1 на xs */
+    @media (min-width: 768px) {
+      .row.bloc > .col-md-6 {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    /* Текст заголовка и абзаца по центру */
+    h1.fw-light {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+    p.lead.text-muted {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: #6c757d;
+      font-size: 1.1rem;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #222;
+      color: #fff;
+      padding: 10px 0;
+      flex-shrink: 0;
+    }
+    footer .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <div class="container-main">
+    <header class="d-flex flex-wrap justify-content-center mb-4">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
         <span class="fs-4">Suporish</span>
@@ -20,48 +123,47 @@
         <li class="nav-item"><a href="#" class="nav-link active">Алоқа</a></li>
       </ul>
     </header>
-  </div> <!--Header tamom-->
 
- <!--center-->
-  <div class="row py-lg-5">
+    <!-- Центр -->
+    <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Хуш омадед</h1>
-        <p class="lead text-muted">Шумо дар инчо метавонед маълумотхои нав, ва кухнаро бинед, ва аз тарафи устод, ё рохбар вазифахо гирифта сабт карда ва корхои шумо дуруст аст ё не фахмед барои ин шумо бояд аз кайд гузаред </p>  
+        <p class="lead text-muted">
+          Шумо дар инчо метавонед маълумотхои нав, ва кухнаро бинед, ва аз тарафи устод, ё рохбар вазифахо гирифта сабт карда ва корхои шумо дуруст аст ё не фахмед барои ин шумо бояд аз кайд гузаред
+        </p>
       </div>
     </div>
-  
-    <div class=" row row-cols-1 row-cols-sm-4  row-cols-md-2 g-10 bloc" >
-        <div class="col">
-          <div class="card shadow-sm">
-          <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/img.jpg"> </img>
 
-            <div class="card-body">
-              <p class="card-text">Муҳокимаи супоришҳо</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/imgg.jpg"> </img>
-
-            <div class="card-body">
-              <p class="card-text">Дар вақтҳои муайян</p>
-            </div>
+    <!-- Карточки -->
+    <div class="row bloc">
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
+          <img class="card-img-top" src="images/img.jpg" alt="Муҳокимаи супоришҳо" />
+          <div class="card-body">
+            <p class="card-text">Муҳокимаи супоришҳо</p>
           </div>
         </div>
       </div>
-    </div><!--center tamom-->
 
-    <!-- Footer -->
-<footer class="bg-dark text-center text-white view">
-  <div class="container p-4">
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2022:
-    <a class="text-white" href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a>
-  </div>
-</footer>
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
+          <img class="card-img-top" src="images/imgg.jpg" alt="Дар вақтҳои муайян" />
+          <div class="card-body">
+            <p class="card-text">Дар вақтҳои муайян</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- container-main end -->
+
+  <!-- Футер -->
+  <footer>
+    <div class="container">
+      <div class="text-center p-2" style="background-color: rgba(255, 255, 255, 0.05);">
+        © 2022:
+        <a href="#">Ҳамаи ҳуқуқҳо ҳифз карда шудаанд</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
-
-
-

@@ -1,37 +1,47 @@
 <?php
-    if(!isset($_POST['login'])){
-        header("Location: login.html");
-    }
-
 session_start();
 
-$login = $_POST['login'];
-$pass = $_POST['pass'];
+if (!isset($_POST['login']) || !isset($_POST['pass'])) {
+    header("Location: login.html");
+    exit;
+}
 
-//Пайвастшавӣ бо БМ
-$link=mysqli_connect("localhost", "root", "", "zadachnik");
-$user = mysqli_query($link, "SELECT `id`,`user_status` FROM `users` WHERE `login` = '$login' AND `pass` = '$pass'");
-$id_user = mysqli_fetch_array($user);
+$login = trim($_POST['login']);
+$pass = trim($_POST['pass']);
 
-if (!empty($id_user['id']) AND ($id_user['user_status']==1)) 
-        {
-            $_SESSION["login"] = $_POST['login'];
-            $_SESSION["uid"] = $id_user['id'];
+// Подключение к базе
+$conn = new mysqli("localhost", "root", "", "zadachnik");
+if ($conn->connect_error) {
+    die("Ошибка подключения: " . $conn->connect_error);
+}
+
+// Используем подготовленный запрос
+$stmt = $conn->prepare("SELECT id, pass, user_status FROM users WHERE login = ?");
+$stmt->bind_param("s", $login);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($row = $result->fetch_assoc()) {
+    // Проверка пароля (если используешь password_hash)
+    if (password_verify($pass, $row['pass'])) {
+        // Сохраняем в сессию
+        $_SESSION["user_id"] = $row['id'];
+        $_SESSION["login"] = $login;
+        $_SESSION["role"] = $row['user_status']; // 0 - юзер, 1 - админ
+
+        if ($row['user_status'] == 1) {
             header("Location: admin.php");
-            exit();  
+        } else {
+            header("Location: user.php");
         }
-elseif( !empty($id_user['id']) AND ($id_user['user_status']==0))
-    {
-        $_SESSION["login"] = $_POST['login'];
-        $_SESSION["uid"] = $id_user['id'];
-        header("Location: user.php");
-        exit();  
+        exit;
+    } else {
+        echo "Неверный пароль!";
     }
-else echo "Шумо ҳуқуқӣ ворид шудан надоред! Барои ворид шудан "."<a href=reg.html>"."дар ин ҷо"."</a>"." аз қайд гузаред"
+} else {
+    echo "Пользователь не найден!";
+}
+
+$stmt->close();
+$conn->close();
 ?>
-<html><body>
- <form>
-<p align="left"><input type="submit" name="back" value ="Назад"></a></p>
-</form>
- </body></html>
-    
